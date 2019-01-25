@@ -1,4 +1,7 @@
 Door-to-door (14 houses == 1 vote): https://www.pri.org/stories/2016-05-18/every-vote-matters-whats-best-way-get-them
-Phone Banking (5%): https://whystatesmatter.sisterdistrict.com/phonebank-its-worth-it-411ca40dfc6b
-Personalized mail (letters/ postcards) (3.4%):: https://votefwd.org/
-Text banking (.2%): https://www.campaignsandelections.com/campaign-insider/why-texting-beats-email-for-gotv
+
+Phone Banking (100 calls = 5 votes): https://whystatesmatter.sisterdistrict.com/phonebank-its-worth-it-411ca40dfc6b
+
+Personalized mail (5949 letters == 178 votes): https://medium.com/@scottforman/my-secret-plan-to-help-flip-the-house-blue-f55e79203750
+
+Text banking (1000 texts == 2 votes): https://www.campaignsandelections.com/campaign-insider/why-texting-beats-email-for-gotv
