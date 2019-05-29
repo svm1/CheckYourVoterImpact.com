@@ -1,7 +1,29 @@
-# CheckYourVoterImpact.com
-Current Link: http://users.csc.calpoly.edu/~dsubel
+# voterimpact
 
-Future Edits (along with aesthetics along the way):
-1) Go to a seperate Page for results 
-2) Make a log-in system
-3) Make a shareable component 
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
