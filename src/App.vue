@@ -1,3 +1,13 @@
+<!--
+Things to add on (+ fix looks along the way)
+1) Fix image problem
+2) Click on github logo to go to git repo
+3) Go to seperate page for results w/ close race examples (VA State House 2017/ Harmon)
+4) "How This Is Calculated Page"
+5) Log-Ins
+6) Shareable Stuff
+ -->
+
 <template> <!-- HTML -->
   <header id="app">
     <div class="nav-bar mt-0"></div>
@@ -22,6 +32,11 @@
       <p>How many texts did you send?</p>
       <input class="w-30" type="number" v-model.number="texts">
       <p>Message is: {{ textsReal }}</p>
+    </div>
+    <div class="pt-5" id='door_qs'>
+      <p>How many people did you convince to vote in person outside of previous methods?</p>
+      <input class="w-30" type="number" v-model.number="people">
+      <p>Message is: {{ peopleReal }}</p>
     </div>
 
     <div class="pt-5" id='door_qs'>
@@ -49,7 +64,9 @@ export default Vue.extend({
       letters: '',
       letterReal: 0,
       texts: '',
-      textsReal: 0
+      textsReal: 0,
+      people: '',
+      peopleReal: 0
     }
   },
   computed:{
@@ -76,11 +93,16 @@ export default Vue.extend({
       }
       this.textsReal = this.texts/500
 
-      return Math.ceil(this.doorReal + this.callReal + this.letterReal + this.textsReal);
+      if(this.people === ''){
+        this.people = 0
+      }
+      this.peopleReal = this.people
+
+      return Math.ceil(this.doorReal + this.callReal + this.letterReal + this.textsReal + this.peopleReal);
     }
   },
   methods: {
-    getTotal(doors,calls,letters,texts) {
+    getTotal(doors,calls,letters,texts,people) {
       door = parseInt(doors);
       if(door === NaN){
         door = 0
@@ -97,7 +119,12 @@ export default Vue.extend({
       if(text === NaN){
         text = 0
       }
-      print(door+call+letter+text);
+
+      people = parseInt(people)
+      if(people === NaN){
+        people = 0
+      }
+      print(door+call+letter+text+people);
     }
   }
 
