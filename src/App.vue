@@ -33,7 +33,7 @@ Things to add on (+ fix looks along the way)
       <input class="w-30" type="number" v-model.number="texts">
       <p>Message is: {{ textsReal }}</p>
     </div>
-    <div class="pt-5" id='door_qs'>
+    <div class="pt-5" id='people_qs'>
       <p>How many people did you convince to vote in person outside of previous methods?</p>
       <input class="w-30" type="number" v-model.number="people">
       <p>Message is: {{ peopleReal }}</p>
