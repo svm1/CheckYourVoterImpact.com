@@ -1,3 +1,12 @@
+<!--
+Things to add on (+ fix looks along the way)
+1) Fix image problem
+2) Go to seperate page for results w/ close race examples (VA State House 2017/ Harmon)
+3) "How This Is Calculated Page"
+4) Log-Ins
+5) Shareable Stuff
+ -->
+
 <template> <!-- HTML -->
   <header id="app">
     <div class="nav-bar mt-0"></div>
@@ -23,12 +32,23 @@
       <input class="w-30" type="number" v-model.number="texts">
       <p>Message is: {{ textsReal }}</p>
     </div>
-
+    <div class="pt-5" id='door_qs'>
+      <p>How many people did you convince to vote in person outside of previous methods?</p>
+      <input class="w-30" type="number" v-model.number="people">
+      <p>Message is: {{ peopleReal }}</p>
+    </div>
     <div class="pt-5" id='door_qs'>
       <p>Total is: {{ total }}</p>
     </div>
-    <div>
-      
+    <div class='button'>
+      <a href='./Results.vue'>
+        <v-btn small color="blue">Click here to get results</v-btn>
+      </a>
+    </div>
+    <div class='git_link'>
+      <a href='https://github.com/DevonSubel/CheckYourVoterImpact.com'>
+        <img alt='GIT_LOGO' src='./assets/gitlogo.png'  width='25' height='25' class=''>
+      </a>
     </div>
   </header>
 </template>
@@ -36,7 +56,11 @@
 <!-- JavaScript -->
 <script>
 import Vue from "vue";
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
 import { print } from "util";
+
+Vue.use(Vuetify)
 
 export default Vue.extend({
   name: 'app',
@@ -49,7 +73,9 @@ export default Vue.extend({
       letters: '',
       letterReal: 0,
       texts: '',
-      textsReal: 0
+      textsReal: 0,
+      people: '',
+      peopleReal: 0
     }
   },
   computed:{
@@ -76,11 +102,16 @@ export default Vue.extend({
       }
       this.textsReal = this.texts/500
 
-      return Math.ceil(this.doorReal + this.callReal + this.letterReal + this.textsReal);
+      if(this.people === ''){
+        this.people = 0
+      }
+      this.peopleReal = this.people
+
+      return Math.ceil(this.doorReal + this.callReal + this.letterReal + this.textsReal + this.peopleReal);
     }
   },
   methods: {
-    getTotal(doors,calls,letters,texts) {
+    getTotal(doors,calls,letters,texts,people) {
       door = parseInt(doors);
       if(door === NaN){
         door = 0
@@ -97,7 +128,12 @@ export default Vue.extend({
       if(text === NaN){
         text = 0
       }
-      print(door+call+letter+text);
+
+      people = parseInt(people)
+      if(people === NaN){
+        people = 0
+      }
+      print(door+call+letter+text+people);
     }
   }
 
@@ -124,6 +160,11 @@ export default Vue.extend({
   background: linear-gradient(45deg,rgb(61, 114, 228), rgb(230, 39, 39));
   height: 60px;
   margin-bottom: 15px;
+}
+
+.git_link {
+  position: absolute;
+  right: 15px;
 }
 
 </style>
