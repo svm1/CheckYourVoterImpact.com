@@ -1,12 +1,13 @@
 <!--
 Things to add on (+ fix looks along the way)
 1) Fix image problem
-2) Click on github logo to go to git repo
-3) Go to seperate page for results w/ close race examples (VA State House 2017/ Harmon)
-4) "How This Is Calculated Page"
-5) Log-Ins
-6) Shareable Stuff
+2) Go to seperate page for results w/ close race examples (VA State House 2017/ Harmon)
+3) "How This Is Calculated Page"
+4) Log-Ins
+5) Shareable Stuff
  -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
 <template> <!-- HTML -->
   <header id="app">
@@ -16,34 +17,37 @@ Things to add on (+ fix looks along the way)
     <div class="pt-5" id='door_qs'>
       <p>How many doors did you knock on?</p>
       <input class="w-30" type="number" v-model.number="doors">
-      <p>Message is: {{ doorReal }}</p>
     </div>
     <div class="pt-5" id='calls_qs'>
       <p>How many phone calls did you send?</p>
       <input class="w-30" type="number" v-model.number="calls">
-      <p>Message is: {{ callReal }}</p>
     </div>
     <div class="pt-5" id='letters_qs'>
       <p>How many personalized letters did you send?</p>
       <input class="w-30" type="number" v-model.number="letters">
-      <p>Message is: {{ letterReal }}</p>
     </div>
     <div class="pt-5" id='door_qs'>
       <p>How many texts did you send?</p>
       <input class="w-30" type="number" v-model.number="texts">
-      <p>Message is: {{ textsReal }}</p>
     </div>
-    <div class="pt-5" id='people_qs'>
-      <p>How many people did you convince to vote in person outside of previous methods?</p>
-      <input class="w-30" type="number" v-model.number="people">
-      <p>Message is: {{ peopleReal }}</p>
-    </div>
-
     <div class="pt-5" id='door_qs'>
-      <p>Total is: {{ total }}</p>
+      <p>How many people did you convince to vote in person in person?</p>
+      <input class="w-30" type="number" v-model.number="people">
     </div>
-    <div>
-      
+    <div class="pt-5" id='door_qs'>
+    </div>
+    <div class='button'>
+      <nav>
+        <v-btn small color="blue">
+          <router-link :to="{name: 'results', params: {id:total}}">Click here for results</router-link>
+        </v-btn>
+      </nav>
+      <router-view/>>
+    </div>
+    <div class='git_link'>
+      <a href='https://github.com/DevonSubel/CheckYourVoterImpact.com'>
+        <img alt='GIT_LOGO' src='./assets/gitlogo.png'  width='25' height='25' class=''>
+      </a>
     </div>
   </header>
 </template>
@@ -51,7 +55,12 @@ Things to add on (+ fix looks along the way)
 <!-- JavaScript -->
 <script>
 import Vue from "vue";
+import VueRouter from 'vue-router'
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
 import { print } from "util";
+
+Vue.use(Vuetify)
 
 export default Vue.extend({
   name: 'app',
@@ -70,6 +79,9 @@ export default Vue.extend({
     }
   },
   computed:{
+    goToResults() {
+      return this.$route.params.results
+    },
     total: function () {
       // `this` points to the vm instance
 
@@ -102,6 +114,11 @@ export default Vue.extend({
     }
   },
   methods: {
+    gotBack() { 
+      windows.history.length > 1
+         ? this.$router.go(-1)
+         : this.$router.push('/')
+    },
     getTotal(doors,calls,letters,texts,people) {
       door = parseInt(doors);
       if(door === NaN){
@@ -151,6 +168,11 @@ export default Vue.extend({
   background: linear-gradient(45deg,rgb(61, 114, 228), rgb(230, 39, 39));
   height: 60px;
   margin-bottom: 15px;
+}
+
+.git_link {
+  position: absolute;
+  right: 15px;
 }
 
 </style>

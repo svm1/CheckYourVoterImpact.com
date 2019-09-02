@@ -1,7 +1,5 @@
 # voterimpact
 
-Link: http://users.csc.calpoly.edu/~dsubel
-
 ## Project setup
 ```
 npm install
